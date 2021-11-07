@@ -1,20 +1,15 @@
-const formToLogin = document.querySelector(".login-form");
-const userInformation = {};
+const incrementEl = document.querySelector('[data-action="increment"]');
+const decrementEl = document.querySelector('[data-action="decrement"]');
+const valueEl = document.querySelector("#value");
 
-// Функция собирает данные в переменную 'userInformation' и перезагружает форму при нажатии кнопки 'Login'
-const onSubmitLoginBtn = (event) => {
-  event.preventDefault();
+let totalValue = Number(valueEl.textContent);
 
-  const {
-    elements: { password, email },
-  } = event.currentTarget;
+incrementEl.addEventListener(
+  "click",
+  () => (valueEl.textContent = totalValue += 1)
+);
 
-  if (email.value === "" || password.value === "") {
-    return alert("Внимание! Все поля должны быть заполнены!");
-  }
-  // Сбор данных в переменную 'userInformation'
-  userInformation.password = password.value;
-  userInformation.email = email.value;
-  console.log(userInformation);
-  formToLogin.reset();
-};
+decrementEl.addEventListener(
+  "click",
+  () => (valueEl.textContent = totalValue -= 1)
+);
